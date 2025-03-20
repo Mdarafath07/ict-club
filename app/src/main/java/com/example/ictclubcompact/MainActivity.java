@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,11 +18,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView regForm;
+
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        regForm = findViewById(R.id.regForm);
+
 
         RecyclerView recyclerView = findViewById(R.id.recycler);
         ArrayList<String> arrayList = new ArrayList<>();
@@ -54,6 +60,23 @@ public class MainActivity extends AppCompatActivity {
             bottomSheetBehavior.setPeekHeight(200);
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
+
+
+        //Registration Form intent
+        regForm.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, Registration.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+
+
 
     }
 
