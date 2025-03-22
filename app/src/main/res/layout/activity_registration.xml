@@ -5,493 +5,732 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:background="@color/blue"
+
     tools:context=".MainActivity">
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/leftarrow"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
         android:text="Registration Form"
-        android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="for member of club"
+        android:textColor="@color/white"
+        android:layout_marginStart="10dp"
+        android:textSize="17dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Personal info" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/userName"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="3dp"
-            android:background="#5676"
-            android:hint="Enter Name.."
-            android:textSize="20dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/userPassword"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Father Name..."
-            android:inputType="textPassword"
-            android:textSize="20dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Mother Name..."
-            android:inputType="textPassword"
-            android:textSize="20dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Enter address..."
-            android:inputType="textPassword"
-            android:textSize="20dp" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/userContact"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Enter Contact No.."
-            android:inputType="number"
-
-            android:textSize="20dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Whatsapp no..."
-            android:inputType="number"
-
-            android:textSize="20dp" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Guardian's Contact number"
-            android:inputType="number"
-
-            android:textSize="20dp" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Facebook Link"
-            android:textSize="20dp" />
-
-    </LinearLayout>
-
-
-
-
-
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="35dp"
-            android:text="Gender"
-            android:textSize="20dp" />
-
-        <RadioButton
-            android:id="@+id/Male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Male"
-            android:textSize="20dp" />
-
-        <RadioButton
-            android:id="@+id/Female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Female"
-            android:textSize="20dp" />
-    </RadioGroup>
-    <View
-        android:layout_width="400dp"
-        android:layout_height="1dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="2dp"
-        android:background="#ACA1A1" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Educational info" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Department"
-            android:inputType="number"
-
-            android:textSize="20dp" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Roll No."
-            android:inputType="number"
-
-            android:textSize="20dp" />
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Registration No."
-            android:inputType="number"
-
-            android:textSize="20dp" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#5676"
-            android:hint="Semester"
-            android:inputType="number"
-
-            android:textSize="20dp" />
-
-    </LinearLayout>
-    <View
-        android:layout_width="400dp"
-        android:layout_height="1dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="2dp"
-        android:background="#ACA1A1" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Course info" />
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="vertical"
+            android:background="@drawable/regformbg">
+
+
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="53dp"
+                android:text="Personal info"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/textbox"
+                    android:hint="Your Name."
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/userPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/textbox"
+                    android:hint="Father's Name."
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/textbox"
+                    android:hint="Mother's Name."
+
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/textbox"
+                    android:hint="Address."
+
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/userContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/textbox"
+                    android:hint="Enter Contact No.."
+                    android:inputType="number"
+
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/textbox"
+                    android:hint="Whatsapp no."
+                    android:inputType="number"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/textbox"
+                    android:hint="Guardian's Contact number"
+                    android:inputType="number"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/textbox"
+                    android:hint="Facebook Link"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint" />
+
+            </LinearLayout>
+
+
+
+
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="35dp"
+                    android:text="Gender"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/Male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Male"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/Female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Female"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                  />
+            </RadioGroup>
+            <View
+                android:layout_width="400dp"
+                android:layout_height="1dp"
                 android:layout_gravity="center"
-
-                android:text="What subject are you interested \nin taking a course on?"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <CheckBox
-                android:id="@+id/office1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:text="Office Application"
-                android:textSize="14dp" />
-
-            <CheckBox
-                android:gravity="start"
-                android:layout_weight="1"
-                android:id="@+id/graphics1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Graphics Design"
-                android:textSize="14dp" />
-
-            <CheckBox
-                android:gravity="start"
-                android:layout_weight="1"
-                android:id="@+id/webDev1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Web Development"
-                android:textSize="14dp" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
-            <CheckBox
-                android:id="@+id/AppsDev1"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Apps Development"
-                android:textSize="14dp"
-                android:gravity="start"/>
-
-            <CheckBox
-                android:gravity="start"
-                android:layout_weight="1"
-                android:id="@+id/ITSupport1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="IT Support"
-                android:textSize="14dp" />
-
-            <CheckBox
-                android:gravity="start"
-                android:layout_weight="1"
-                android:id="@+id/Program1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Programming Language"
-                android:textSize="14dp" />
-
-        </LinearLayout>
-
-
-    </RadioGroup>
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
+                android:layout_marginTop="2dp"
+                android:background="#ACA1A1" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="53dp"
+                android:text="Educational info"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/textbox"
+                        android:hint="Department"
+
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hint" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/textbox"
+                        android:hint="Roll No."
+                        android:inputType="number"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hint"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/textbox"
+                        android:hint="Reg. No."
+                        android:inputType="number"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hint"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/textbox"
+                        android:hint="Semester"
+                        android:inputType="number"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/hint"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="400dp"
+                android:layout_height="1dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="#ACA1A1"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Course info"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
 
-                android:text="Have you had any previous experience?"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="53dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+
+                        android:text="What subject are you interested \nin taking a course on?"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:weightSum="3">
+
+                    <CheckBox
+                        android:id="@+id/office1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Office Application"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                    <CheckBox
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/graphics1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Graphics Design"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                    <CheckBox
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/webDev1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Web Development"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp">
+                    <CheckBox
+                        android:id="@+id/AppsDev1"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Apps Development"
+                        android:textSize="14dp"
+                        android:gravity="start"
+                        android:textColor="@color/black"/>
+
+                    <CheckBox
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/ITSupport1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="IT Support"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                    <CheckBox
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/Program1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Programming Language"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="53dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/black"
+
+                        android:text="Have you had any previous experience?"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp">
+
+                    <CheckBox
+                        android:id="@+id/office"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Office Application"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                    <CheckBox
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/graphics"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Graphics Design"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                    <CheckBox
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/webDev"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Web Development"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp">
+                    <CheckBox
+                        android:id="@+id/AppsDev"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Apps Development"
+                        android:textSize="14dp"
+                        android:gravity="start"
+                        android:textColor="@color/black"
+                        />
+
+                    <CheckBox
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/ITSupport"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="IT Support"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                    <CheckBox
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/Program"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Programming Language"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+
+            </RadioGroup>
+            <View
+                android:layout_width="400dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:background="#ACA1A1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy and policy"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="I pledge that I will abide by all the rules and regulations of the Compact Polytechnic Institute ICT Club. I will not engage in any activities that may harm the reputation of the club and the institute or cause harm to the country and society."
+                    android:textStyle="normal"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    >
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes, I agree."
+                        android:textColor="@color/black"
+
+                        android:textSize="14dp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/blue"
+                    android:text="Click To Submit"
+                    android:textColor="#F5FBF6"
+                    android:layout_marginBottom="10dp"/>
+
+
+            </LinearLayout>
+
+
+
 
 
         </LinearLayout>
+    </ScrollView>
 
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <CheckBox
-                android:id="@+id/office"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:text="Office Application"
-                android:textSize="14dp" />
-
-            <CheckBox
-                android:gravity="start"
-                android:layout_weight="1"
-                android:id="@+id/graphics"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Graphics Design"
-                android:textSize="14dp" />
-
-            <CheckBox
-                android:gravity="start"
-                android:layout_weight="1"
-                android:id="@+id/webDev"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Web Development"
-                android:textSize="14dp" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
-            <CheckBox
-                android:id="@+id/AppsDev"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Apps Development"
-                android:textSize="14dp"
-                android:gravity="start"/>
-
-            <CheckBox
-                android:gravity="start"
-                android:layout_weight="1"
-                android:id="@+id/ITSupport"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="IT Support"
-                android:textSize="14dp" />
-
-            <CheckBox
-                android:gravity="start"
-                android:layout_weight="1"
-                android:id="@+id/Program"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Programming Language"
-                android:textSize="14dp" />
-
-        </LinearLayout>
 
 
-    </RadioGroup>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="Country"
-            android:textSize="20dp" />
-
-        <Spinner
-            android:id="@+id/SpCountry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30dp" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#B71C1C"
-        android:text="Click To Submit"
-        android:textColor="#F5FBF6" />
 
 </LinearLayout>

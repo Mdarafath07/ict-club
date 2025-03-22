@@ -5,4 +5,5 @@
     <color name="blue">#0B2473</color>
     <color name="gray">#D3D3D3</color>
     <color name="lightblue">#1340D0</color>
+    <color name="hint">#636363</color>
 </resources>
