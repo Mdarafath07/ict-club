@@ -4,13 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImageViewActivity">
-
+    android:orientation="vertical"
+    tools:context=".ImageViewActivity"
+    android:background="@color/blue">
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fulligarrow"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/leftarrow"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"/>
+        android:gravity="center">
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:lottie_url="REPLACE_JSON_URL"
+            app:lottie_rawRes="@raw/robot"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/regformbg">
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="1dp">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"/>
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
+
+
 
 
 </LinearLayout>
