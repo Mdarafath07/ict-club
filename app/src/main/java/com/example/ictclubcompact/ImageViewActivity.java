@@ -15,7 +15,7 @@ import com.example.ictclubcompact.R;
 
 
 public class ImageViewActivity extends AppCompatActivity {
-    TextView fulligarrow;
+    ImageView fulligarrow;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -32,7 +32,7 @@ public class ImageViewActivity extends AppCompatActivity {
         fulligarrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ImageViewActivity.this, MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
