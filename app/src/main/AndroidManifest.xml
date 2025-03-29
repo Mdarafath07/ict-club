@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,9 +14,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ICTClub"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity android:name=".ImageViewActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".AssiWebDev"
+            android:exported="false" />
+        <activity
+            android:name=".AssWebDev"
+            android:exported="false" />
+        <activity
+            android:name=".Assignment"
+            android:exported="false" />
+        <activity
+            android:name=".News"
+            android:exported="false" />
+        <activity
+            android:name=".ToDo"
+            android:label="ToDo List" />
+        <activity
+            android:name=".Notification"
+            android:exported="false" />
+        <activity
+            android:name=".ImageViewActivity"
+            android:exported="true" />
         <activity
             android:name=".Registration"
             android:exported="false" />

@@ -2,11 +2,13 @@ package com.example.ictclubcompact;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -26,6 +28,7 @@ public class Registration extends AppCompatActivity {
     EditText dateofbirth;
 
     Button btnSubmit;
+    ImageView backbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,15 @@ public class Registration extends AppCompatActivity {
                 }, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+        backbtn = findViewById(R.id.backbtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 

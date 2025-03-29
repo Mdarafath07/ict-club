@@ -9,6 +9,7 @@
 
     tools:context=".MainActivity">
     <ImageView
+        android:id="@+id/backbtn"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/leftarrow"
@@ -632,7 +633,6 @@
                     <CheckBox
                         android:gravity="start"
                         android:layout_weight="1"
-                        android:id="@+id/webDev"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Web Development"
