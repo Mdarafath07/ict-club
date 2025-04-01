@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "829084421369",
+    "firebase_url": "https://ict-club-b7f19-default-rtdb.firebaseio.com",
+    "project_id": "ict-club-b7f19",
+    "storage_bucket": "ict-club-b7f19.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829084421369:android:96dddcb356ff194df5e628",
+        "android_client_info": {
+          "package_name": "com.example.ictclubcompact"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEppG0YqWZ1ruru6ncHQwnyRChFG9jTqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
