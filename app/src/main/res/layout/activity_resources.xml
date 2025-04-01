@@ -9,7 +9,7 @@
     android:background="@color/blue"
     tools:context=".Notification">
     <ImageView
-        android:id="@+id/backbtnnews"
+        android:id="@+id/backbtnrec"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/leftarrow"
@@ -21,9 +21,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
-        android:text="News"
+        android:text="Resources"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

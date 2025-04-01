@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView todo;
     ImageView news;
     ImageView assignment;
+    ImageView resources;
+    ImageView live;
 
     TextView regForm;
 
@@ -92,6 +94,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        // Resources
+        resources =findViewById(R.id.resources);
+        resources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Resources.class);
+                startActivity(intent);
+            }
+        });
+        //live
+        live =findViewById(R.id.live);
+        live.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LiveClassesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
 

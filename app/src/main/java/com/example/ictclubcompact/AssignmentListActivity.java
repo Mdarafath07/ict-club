@@ -1,5 +1,6 @@
 package com.example.ictclubcompact;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import java.util.List;
 
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +31,7 @@ public class AssignmentListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AssignmentAdapter adapter;
     private List<Assignment> assignmentList;
+    ImageView backbtnlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,5 +49,19 @@ public class AssignmentListActivity extends AppCompatActivity {
 
         adapter = new AssignmentAdapter(assignmentList, this);
         recyclerView.setAdapter(adapter);
+
+
+        backbtnlist = findViewById(R.id.backbtnlist);
+        backbtnlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Assignment.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
+
+
 }

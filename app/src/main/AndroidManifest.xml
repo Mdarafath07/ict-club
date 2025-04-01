@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,29 +14,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ICTClub"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity android:name="LiveClassesActivity"
+            android:exported="true">
 
-        <activity android:name=".AssignmentListActivity">
-
-        </activity>
-        <activity android:name=".Assignment">
 
         </activity>
+
+        <activity
+            android:name=".Resources"
+            android:exported="false" />
+        <activity
+            android:name=".AssignmentListActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".Assignment"
+            android:exported="true" />
         <activity android:name=".News">
 
         </activity>
-        <activity android:name=".Notification">
+
+        <activity
+            android:name=".Notification"
+            android:exported="true">
 
         </activity>
-        <activity android:name=".SubmitAssignmentActivity">
+        <activity
+            android:name=".SubmitAssignmentActivity"
+            android:exported="true">
 
         </activity>
-        <activity android:name=".ToDo">
+        <activity
+            android:name=".ToDo"
+            android:exported="true">
 
         </activity>
-
-        <activity android:name=".ImageViewActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".ImageViewActivity"
+            android:exported="true" />
         <activity
             android:name=".Registration"
             android:exported="false" />
