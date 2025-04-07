@@ -52,6 +52,7 @@
 
 
                 <LinearLayout
+                    android:gravity="center"
                     android:weightSum="3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -88,9 +89,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
                         <ImageView
+                            android:id="@+id/profile"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:src="@drawable/brightnessonicon"
+                            android:src="@drawable/profile"
                             android:layout_gravity="center"
                             />
 
@@ -574,20 +576,17 @@
 
 
 
-
         </LinearLayout>
 
 
 
-
-        
-        
-        
-
     </ScrollView>
 
 
+
+
     </FrameLayout>
+
 
 
 </LinearLayout>

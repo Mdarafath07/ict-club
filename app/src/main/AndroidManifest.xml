@@ -16,58 +16,48 @@
         android:theme="@style/Theme.ICTClub"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity android:name="LiveClassesActivity"
-            android:exported="true">
 
-
-        </activity>
-
+        <!-- Splash Screen (Launcher Activity) -->
         <activity
-            android:name=".Resources"
-            android:exported="false" />
-        <activity
-            android:name=".AssignmentListActivity"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".Assignment"
-            android:exported="true" />
-        <activity android:name=".News">
-
-        </activity>
-
-        <activity
-            android:name=".Notification"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".SubmitAssignmentActivity"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ToDo"
-            android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".ImageViewActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Registration"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Splashscreen"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <!-- Main Authentication Flow -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ICTClub"/>
+        <activity
+            android:name=".SignupActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ICTClub"/>
+
+        <!-- Main App Activities -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.ICTClub"/>
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true"/>
+
+        <!-- Other Activities -->
+        <activity android:name=".LiveClassesActivity" />
+        <activity android:name=".Resources" />
+        <activity android:name=".AssignmentListActivity" />
+        <activity android:name=".Assignment" />
+        <activity android:name=".News" />
+        <activity android:name=".Notification" />
+        <activity android:name=".SubmitAssignmentActivity" />
+        <activity android:name=".ToDo" />
+        <activity android:name=".ImageViewActivity" />
+        <activity android:name=".Registration" />
+    </application>
 </manifest>

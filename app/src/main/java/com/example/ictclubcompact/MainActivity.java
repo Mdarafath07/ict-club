@@ -1,48 +1,66 @@
 package com.example.ictclubcompact;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView notification;
-    ImageView todo;
-    ImageView news;
-    ImageView assignment;
-    ImageView resources;
-    ImageView live;
+    private ImageView notification, todo, news, assignment, resources, live, profile;
+    private TextView regForm;
+    private FirebaseAuth mAuth;
 
-    TextView regForm;
-
-
-
-
-
-
-
-
-    @SuppressLint({"NonConstantResourceId", "WrongViewCast", "MissingInflatedId"})
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        // Check if user is logged in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            redirectToLogin();
+            return;
+        }
+
+        initializeViews();
+        setupRecyclerView();
+        setupClickListeners();
+
+        // Set navigation bar color
+        getWindow().setNavigationBarColor(Color.parseColor("#0B2473"));
+    }
+
+    private void redirectToLogin() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
+    private void initializeViews() {
         regForm = findViewById(R.id.regForm);
         notification = findViewById(R.id.notification);
-        RecyclerView recyclerView = findViewById(R.id.recycler);
+        todo = findViewById(R.id.todo);
+        news = findViewById(R.id.news);
+        assignment = findViewById(R.id.assignment);
+        resources = findViewById(R.id.resources);
+        live = findViewById(R.id.live);
+        profile = findViewById(R.id.profile);
+    }
 
+    private void setupRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.recycler);
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("https://i.pinimg.com/736x/19/9f/f3/199ff3ef358f2b5cbcf4f06213a7a16f.jpg");
         arrayList.add("https://i.pinimg.com/736x/b4/f5/52/b4f552deedaae2f1a4689dc048c56f77.jpg");
@@ -59,65 +77,41 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("image", path);
             startActivity(intent);
         });
+    }
 
-        getWindow().setNavigationBarColor(Color.parseColor("#0B2473"));
+    private void setupClickListeners() {
+        // Registration Form
+        regForm.setOnClickListener(v -> startActivity(new Intent(this, Registration.class)));
 
-        // Registration Form intent
-        regForm.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Registration.class)));
+        // Notification
+        notification.setOnClickListener(v -> startActivity(new Intent(this, Notification.class)));
 
-        // Notification Intent
-        notification.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Notification.class)));
-        //TODO
-        todo = findViewById(R.id.todo);
-        todo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ToDo.class);
-                startActivity(intent);
-            }
-        });
-        //news
-        news =findViewById(R.id.news);
-        news.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), News.class);
-                startActivity(intent);
-            }
-        });
-        //assignment
-        assignment =findViewById(R.id.assignment);
-        assignment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Assignment.class);
-                startActivity(intent);
-            }
-        });
+        // ToDo
+        todo.setOnClickListener(v -> startActivity(new Intent(this, ToDo.class)));
+
+        // News
+        news.setOnClickListener(v -> startActivity(new Intent(this, News.class)));
+
+        // Assignment
+        assignment.setOnClickListener(v -> startActivity(new Intent(this, Assignment.class)));
+
         // Resources
-        resources =findViewById(R.id.resources);
-        resources.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Resources.class);
-                startActivity(intent);
-            }
-        });
-        //live
-        live =findViewById(R.id.live);
-        live.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LiveClassesActivity.class);
-                startActivity(intent);
-            }
-        });
+        resources.setOnClickListener(v -> startActivity(new Intent(this, Resources.class)));
 
+        // Live Classes
+        live.setOnClickListener(v -> startActivity(new Intent(this, LiveClassesActivity.class)));
 
+        // Profile
+        profile.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+    }
 
-
-
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            redirectToLogin();
+        }
     }
 }
