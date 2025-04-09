@@ -1,128 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/white">
+    tools:context=".MainActivity"
+    android:background="@color/blue">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:textSize="24sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"/>
-
-        <EditText
-            android:id="@+id/nameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:background="@drawable/background"
-            android:padding="12dp"
-            android:textColorHint="@color/gray"/>
-
-        <EditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/background"
-            android:padding="12dp"
-            android:textColorHint="@color/gray"
-            android:layout_marginTop="16dp"/>
+        android:gravity="center"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/countryCodePicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:ccp_defaultPhoneCode="880"
-                app:ccp_defaultNameCode="BD"
-                app:ccp_textSize="14sp"
-                app:ccp_showNameCode="false"/>
-
-            <EditText
-                android:id="@+id/phoneEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:inputType="phone"
-                android:background="@drawable/background"
-                android:padding="12dp"
-                android:textColorHint="@color/gray"
-                android:layout_marginStart="8dp"/>
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:background="@drawable/background"
-            android:padding="12dp"
-            android:textColorHint="@color/gray"
-            android:layout_marginTop="16dp"/>
-
-        <EditText
-            android:id="@+id/confirmPasswordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            android:background="@drawable/background"
-            android:padding="12dp"
-            android:textColorHint="@color/gray"
-            android:layout_marginTop="16dp"/>
-
-        <Button
-            android:id="@+id/signupButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SIGN UP"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:background="@drawable/button_background"
-            android:layout_marginTop="24dp"
-            android:padding="12dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="24dp">
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@drawable/background">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account?"
-                android:textColor="@color/gray"/>
-
-            <TextView
-                android:id="@+id/loginRedirectText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Login"
+                android:text="Create Account"
+                android:textSize="24sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginStart="4dp"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Full Name Input Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Full Name"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/blue"
+                app:errorTextColor="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Email Input Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Email"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/blue"
+                app:errorTextColor="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Country Code and Phone Number -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/countryCodePicker"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccp_defaultPhoneCode="880"
+                    app:ccp_defaultNameCode="BD"
+                    app:ccp_textSize="14sp"
+                    app:ccp_showNameCode="false" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="Phone Number"
+                    app:hintTextColor="@color/black"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/blue"
+                    app:errorTextColor="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:textColor="@color/black"
+                        app:hintTextColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Password Input Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/blue"
+                app:errorTextColor="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Confirm Password Input Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Confirm Password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/blue"
+                app:errorTextColor="@color/black"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    app:hintTextColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Sign Up Button -->
+            <Button
+                android:id="@+id/signupButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SIGN UP"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/blue"
+                android:layout_marginTop="24dp"
+                android:padding="12dp" />
+
+            <!-- Already Have an Account Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account?"
+                    android:textColor="@color/hint_text_gray" />
+
+                <TextView
+                    android:id="@+id/loginRedirectText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Login"
+                    android:textColor="@color/text_primary_black"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

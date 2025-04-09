@@ -11,6 +11,8 @@
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
 
     </style>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar"></style>
 
-     <style name="Theme.ICTClub" parent="Base.Theme.ICTClub" />
+
+    <style name="Theme.ICTClub" parent="Base.Theme.ICTClub" />
 </resources>

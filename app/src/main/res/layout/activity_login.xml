@@ -1,47 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    tools:context=".MainActivity"
+    android:background="@color/blue">
 
-    <EditText
-        android:id="@+id/emailEditText"
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email or Phone"
-        android:inputType="textEmailAddress"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp">
 
-    <EditText
-        android:id="@+id/passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_marginTop="8dp"/>
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="16dp"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginBottom="10dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/login" />
 
-    <TextView
-        android:id="@+id/forgotPasswordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:textColor="@color/black"
-        android:layout_gravity="end"
-        android:layout_marginTop="8dp"/>
+        <LinearLayout
 
-    <TextView
-        android:id="@+id/signupRedirectText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Don't have an account? Sign Up"
-        android:textColor="@color/black"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/background"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dp" />
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/countryCodePicker"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:ccp_defaultLanguage="ENGLISH" />
+
+            <!-- Email or Phone -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email or Phone Number"
+                app:boxBackgroundMode="outline"
+
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/blue"
+                app:errorTextColor="@color/black"
+                app:hintTextColor="@color/black"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/blue"
+                app:errorTextColor="@color/black"
+                app:hintTextColor="@color/black"
+
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/black"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Login Button -->
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="LOGIN"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+
+            <!-- Forgot Password -->
+            <TextView
+                android:id="@+id/forgotPasswordText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password?"
+                android:textColor="@color/blue"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:layout_marginEnd="10dp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Sign Up -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account?"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/signupRedirectText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/blue"
+                android:text="SIGN UP"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -51,6 +51,14 @@
         android:layout_height="wrap_content"
         android:text="Back"
         android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FF0000"
+        android:textColor="#FFFFFF"/>
 
   </LinearLayout>
 </ScrollView>

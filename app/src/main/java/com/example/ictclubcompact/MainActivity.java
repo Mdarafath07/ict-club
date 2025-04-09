@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageView notification, todo, news, assignment, resources, live, profile;
+    private ImageView notification, todo, news, assignment, resources, live, profile, helpem;
     private TextView regForm;
     private FirebaseAuth mAuth;
 
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         resources = findViewById(R.id.resources);
         live = findViewById(R.id.live);
         profile = findViewById(R.id.profile);
+        helpem = findViewById(R.id.helpem);
+
+
     }
 
     private void setupRecyclerView() {
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupClickListeners() {
+
         // Registration Form
         regForm.setOnClickListener(v -> startActivity(new Intent(this, Registration.class)));
 
@@ -103,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Profile
         profile.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+
+        //help email
+        helpem.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+
     }
 
     @Override

@@ -41,7 +41,7 @@ public class LiveClassesActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
 
         // Configure SearchView
-        searchView.setIconifiedByDefault(true); // Start as icon only
+        searchView.setIconifiedByDefault(true);
         searchView.setQueryHint("Search subjects...");
         searchView.setOnClickListener(v -> {
             if (searchView.isIconified()) {

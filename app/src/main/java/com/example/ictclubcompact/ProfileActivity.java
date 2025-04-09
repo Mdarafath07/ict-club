@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private ImageView profileImageView;
     private TextView nameTextView, emailTextView, phoneTextView;
-    private Button changePasswordButton, backButton;
+    private Button changePasswordButton, backButton, logoutButton;
     private Uri imageUri;
     private ImgBBUploader imgBBUploader;
 
@@ -59,6 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
         phoneTextView = findViewById(R.id.phoneTextView);
         changePasswordButton = findViewById(R.id.changePasswordButton);
         backButton = findViewById(R.id.backButton);
+        logoutButton = findViewById(R.id.logoutButton);
     }
 
     private void initializeFirebase() {
@@ -66,7 +67,6 @@ public class ProfileActivity extends AppCompatActivity {
         if (currentUser != null) {
             databaseRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid());
         } else {
-            // If no user is logged in, redirect to login
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
@@ -74,7 +74,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void loadUserData() {
         if (currentUser == null || databaseRef == null) {
-            Log.e(TAG, "User not authenticated or database reference null");
             return;
         }
 
@@ -82,7 +81,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()) {
-                    Log.e(TAG, "User data doesn't exist in database");
                     return;
                 }
 
@@ -95,8 +93,6 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(TAG, "Failed to load user data: " + error.getMessage());
-                showToast("Failed to load user data");
             }
         });
     }
@@ -130,6 +126,14 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(new Intent(ProfileActivity.this, MainActivity.class));
             finish();
         });
+        logoutButton.setOnClickListener(v -> logoutUser());
+    }
+
+    private void logoutUser() {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+        finish();
+        showToast("Logged out");
     }
 
     private void openImagePicker() {
@@ -167,17 +171,17 @@ public class ProfileActivity extends AppCompatActivity {
 
     private boolean validatePasswordInputs(String currentPassword, String newPassword, String confirmPassword) {
         if (currentPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-            showToast("Please fill all fields");
+            showToast("Fill all fields");
             return false;
         }
 
         if (!newPassword.equals(confirmPassword)) {
-            showToast("New passwords don't match");
+            showToast("Passwords don't match");
             return false;
         }
 
         if (newPassword.length() < 6) {
-            showToast("Password should be at least 6 characters");
+            showToast("Minimum 6 characters");
             return false;
         }
 
@@ -198,17 +202,13 @@ public class ProfileActivity extends AppCompatActivity {
                         currentUser.updatePassword(newPassword)
                                 .addOnCompleteListener(updateTask -> {
                                     if (updateTask.isSuccessful()) {
-                                        showToast("Password changed successfully");
+                                        showToast("Password changed");
                                     } else {
-                                        showToast("Failed to change password: " +
-                                                (updateTask.getException() != null ?
-                                                        updateTask.getException().getMessage() : "Unknown error"));
+                                        showToast("Failed to change");
                                     }
                                 });
                     } else {
-                        showToast("Authentication failed: " +
-                                (task.getException() != null ?
-                                        task.getException().getMessage() : "Unknown error"));
+                        showToast("Authentication failed");
                     }
                 });
     }
@@ -230,12 +230,12 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void uploadImageToImgBB() {
         if (imageUri == null || currentUser == null) {
-            showToast("Error uploading image");
+            showToast("Upload error");
             return;
         }
 
         ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Uploading Profile Picture...");
+        progressDialog.setTitle("Uploading...");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
@@ -249,7 +249,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onError(String error) {
                 progressDialog.dismiss();
-                showToast("Error: " + error);
+                showToast("Upload failed");
             }
         });
     }
@@ -264,9 +264,9 @@ public class ProfileActivity extends AppCompatActivity {
                 .setValue(imageUrl)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        showToast("Profile picture updated");
+                        showToast("Profile updated");
                     } else {
-                        showToast("Failed to save profile URL");
+                        showToast("Save failed");
                     }
                 });
     }

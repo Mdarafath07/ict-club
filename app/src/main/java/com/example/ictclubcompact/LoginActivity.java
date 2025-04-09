@@ -1,5 +1,6 @@
 package com.example.ictclubcompact;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -17,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private TextView signupRedirectText, forgotPasswordText;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

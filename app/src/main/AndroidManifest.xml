@@ -59,5 +59,6 @@
         <activity android:name=".ToDo" />
         <activity android:name=".ImageViewActivity" />
         <activity android:name=".Registration" />
+        <activity android:name=".HelpActivity"/>
     </application>
 </manifest>
