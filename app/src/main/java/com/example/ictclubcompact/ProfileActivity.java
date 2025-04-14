@@ -39,6 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
     private Button changePasswordButton, backButton, logoutButton;
     private Uri imageUri;
     private ImgBBUploader imgBBUploader;
+    private ValueEventListener userDataListener;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,28 +79,39 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
-        databaseRef.addValueEventListener(new ValueEventListener() {
+        if (userDataListener != null) {
+            databaseRef.removeEventListener(userDataListener);
+        }
+
+        userDataListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!snapshot.exists()) {
-                    return;
-                }
-
-                User user = snapshot.getValue(User.class);
-                if (user != null) {
-                    updateUI(user);
-                    loadProfileImage(user.getProfileImageUrl());
+                if (!isDestroyed() && snapshot.exists()) {
+                    User user = snapshot.getValue(User.class);
+                    if (user != null) {
+                        updateUI(user);
+                        loadProfileImage(user.getProfileImageUrl());
+                    }
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                if (!isDestroyed()) {
+                    Log.e(TAG, "Database error: " + error.getMessage());
+                }
             }
-        });
+        };
+
+        databaseRef.addValueEventListener(userDataListener);
     }
 
     private void updateUI(User user) {
+        if (isDestroyed()) return;
+
         runOnUiThread(() -> {
+            if (isDestroyed()) return;
+
             nameTextView.setText(user.getName() != null ? user.getName() : "N/A");
             emailTextView.setText(user.getEmail() != null ? user.getEmail() : "N/A");
             phoneTextView.setText(user.getPhone() != null ? user.getPhone() : "N/A");
@@ -106,15 +119,23 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void loadProfileImage(String imageUrl) {
+        if (isDestroyed()) return;
+
         runOnUiThread(() -> {
-            if (imageUrl != null && !imageUrl.isEmpty()) {
-                Glide.with(ProfileActivity.this)
-                        .load(imageUrl)
-                        .circleCrop()
-                        .placeholder(R.drawable.profile)
-                        .into(profileImageView);
-            } else {
-                profileImageView.setImageResource(R.drawable.profile);
+            if (isDestroyed()) return;
+
+            try {
+                if (imageUrl != null && !imageUrl.isEmpty()) {
+                    Glide.with(ProfileActivity.this)
+                            .load(imageUrl)
+                            .circleCrop()
+                            .placeholder(R.drawable.profile)
+                            .into(profileImageView);
+                } else {
+                    profileImageView.setImageResource(R.drawable.profile);
+                }
+            } catch (IllegalArgumentException e) {
+                Log.e(TAG, "Glide load error: " + e.getMessage());
             }
         });
     }
@@ -194,13 +215,24 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
+        showProgressDialog("Changing password...");
+
         AuthCredential credential = EmailAuthProvider.getCredential(currentUser.getEmail(), currentPassword);
 
         currentUser.reauthenticate(credential)
                 .addOnCompleteListener(task -> {
+                    if (isDestroyed()) {
+                        dismissProgressDialog();
+                        return;
+                    }
+
                     if (task.isSuccessful()) {
                         currentUser.updatePassword(newPassword)
                                 .addOnCompleteListener(updateTask -> {
+                                    dismissProgressDialog();
+
+                                    if (isDestroyed()) return;
+
                                     if (updateTask.isSuccessful()) {
                                         showToast("Password changed");
                                     } else {
@@ -208,6 +240,7 @@ public class ProfileActivity extends AppCompatActivity {
                                     }
                                 });
                     } else {
+                        dismissProgressDialog();
                         showToast("Authentication failed");
                     }
                 });
@@ -218,51 +251,62 @@ public class ProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             imageUri = data.getData();
-            if (imageUri != null) {
-                Glide.with(this)
-                        .load(imageUri)
-                        .circleCrop()
-                        .into(profileImageView);
-                uploadImageToImgBB();
+            if (imageUri != null && !isDestroyed()) {
+                try {
+                    Glide.with(this)
+                            .load(imageUri)
+                            .circleCrop()
+                            .into(profileImageView);
+                    uploadImageToImgBB();
+                } catch (IllegalArgumentException e) {
+                    Log.e(TAG, "Glide load error: " + e.getMessage());
+                }
             }
         }
     }
 
     private void uploadImageToImgBB() {
-        if (imageUri == null || currentUser == null) {
+        if (imageUri == null || currentUser == null || isDestroyed()) {
             showToast("Upload error");
             return;
         }
 
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Uploading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        showProgressDialog("Uploading...");
 
         imgBBUploader.uploadImage(this, imageUri, "64ce96c9063d79ff088ad4b8ef183868", new ImgBBUploader.UploadCallback() {
             @Override
             public void onSuccess(String imageUrl) {
-                progressDialog.dismiss();
-                saveImageUrlToDatabase(imageUrl);
+                if (!isDestroyed()) {
+                    dismissProgressDialog();
+                    saveImageUrlToDatabase(imageUrl);
+                }
             }
 
             @Override
             public void onError(String error) {
-                progressDialog.dismiss();
-                showToast("Upload failed");
+                if (!isDestroyed()) {
+                    dismissProgressDialog();
+                    showToast("Upload failed");
+                }
             }
         });
     }
 
     private void saveImageUrlToDatabase(String imageUrl) {
-        if (databaseRef == null) {
+        if (databaseRef == null || isDestroyed()) {
             showToast("Database error");
             return;
         }
 
+        showProgressDialog("Saving...");
+
         databaseRef.child("profileImageUrl")
                 .setValue(imageUrl)
                 .addOnCompleteListener(task -> {
+                    dismissProgressDialog();
+
+                    if (isDestroyed()) return;
+
                     if (task.isSuccessful()) {
                         showToast("Profile updated");
                     } else {
@@ -271,7 +315,42 @@ public class ProfileActivity extends AppCompatActivity {
                 });
     }
 
+    private void showProgressDialog(String message) {
+        if (isDestroyed()) return;
+
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setCancelable(false);
+        }
+        progressDialog.setMessage(message);
+        progressDialog.show();
+    }
+
+    private void dismissProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            try {
+                progressDialog.dismiss();
+            } catch (Exception e) {
+                Log.e(TAG, "Error dismissing progress dialog: " + e.getMessage());
+            }
+        }
+    }
+
     private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        if (!isDestroyed()) {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove Firebase listeners
+        if (databaseRef != null && userDataListener != null) {
+            databaseRef.removeEventListener(userDataListener);
+        }
+
+        // Dismiss progress dialog
+        dismissProgressDialog();
     }
 }

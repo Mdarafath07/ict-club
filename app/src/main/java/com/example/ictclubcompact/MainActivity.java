@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageView notification, todo, news, assignment, resources, live, profile, helpem;
+    private ImageView notification, todo, news, assignment, resources, live, profile, helpem, shedule;
     private TextView regForm;
     private FirebaseAuth mAuth;
 
@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         live = findViewById(R.id.live);
         profile = findViewById(R.id.profile);
         helpem = findViewById(R.id.helpem);
+        shedule = findViewById(R.id.shedule);
+
+
 
 
     }
@@ -87,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
         // Registration Form
         regForm.setOnClickListener(v -> startActivity(new Intent(this, Registration.class)));
 
-        // Notification
-        notification.setOnClickListener(v -> startActivity(new Intent(this, Notification.class)));
+
 
         // ToDo
         todo.setOnClickListener(v -> startActivity(new Intent(this, ToDo.class)));
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         //help email
         helpem.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
+
 
     }
 

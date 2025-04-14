@@ -24,7 +24,7 @@
             android:id="@+id/selectImageButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select Image"/>
+            android:text="Select Image (Optional)"/>
 
         <ImageView
             android:id="@+id/imagePreview"
@@ -34,6 +34,18 @@
             android:layout_marginTop="16dp"
             android:visibility="gone"
             android:scaleType="centerCrop"/>
+
+        <!-- Added Remove Image Button -->
+        <Button
+            android:id="@+id/removeImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove Image"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            android:backgroundTint="@color/red"
+            android:textColor="@android:color/white"/>
 
         <TextView
             android:layout_width="match_parent"

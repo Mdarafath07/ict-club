@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ICT Club</string>
+    <string name="default_notification_channel_id">class_notifications</string>
+
 </resources>

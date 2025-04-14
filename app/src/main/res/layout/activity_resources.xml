@@ -6,8 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
-    tools:context=".Notification">
+    android:background="@color/blue">
     <ImageView
         android:id="@+id/backbtnrec"
         android:layout_width="25dp"

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    tools:context=".Notification">
+    tools:context=".News">
     <ImageView
         android:id="@+id/backbtnnews"
         android:layout_width="25dp"

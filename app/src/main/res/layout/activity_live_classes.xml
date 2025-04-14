@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    tools:context=".Notification">
+    tools:context=".LiveClassesActivity">
     <ImageView
         android:id="@+id/backbtnlive"
         android:layout_width="25dp"

@@ -54,7 +54,6 @@
         <activity android:name=".AssignmentListActivity" />
         <activity android:name=".Assignment" />
         <activity android:name=".News" />
-        <activity android:name=".Notification" />
         <activity android:name=".SubmitAssignmentActivity" />
         <activity android:name=".ToDo" />
         <activity android:name=".ImageViewActivity" />

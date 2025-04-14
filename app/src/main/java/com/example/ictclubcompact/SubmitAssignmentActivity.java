@@ -1,5 +1,4 @@
 package com.example.ictclubcompact;
-import com.example.ictclubcompact.SubmitAssignmentActivity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -23,16 +22,17 @@ public class SubmitAssignmentActivity extends AppCompatActivity {
     private ImageView imagePreview;
     private Uri imageUri;
     private EditText descriptionEditText;
-    private Button submitButton;
+    private Button submitButton, removeImageButton;
     private ProgressBar progressBar;
     private String assignmentId, assignmentTitle;
+    private Button selectImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_assignment);
 
-        // Assignment ডিটেইলস পাওয়া
+        // Assignment
         assignmentId = getIntent().getStringExtra("assignment_id");
         assignmentTitle = getIntent().getStringExtra("assignment_title");
 
@@ -43,18 +43,31 @@ public class SubmitAssignmentActivity extends AppCompatActivity {
         descriptionEditText = findViewById(R.id.descriptionEditText);
         submitButton = findViewById(R.id.submitButton);
         progressBar = findViewById(R.id.progressBar);
+        selectImageButton = findViewById(R.id.selectImageButton);
 
-        Button selectImageButton = findViewById(R.id.selectImageButton);
         selectImageButton.setOnClickListener(v -> openFileChooser());
+
+        // Add remove image button functionality
+        Button removeImageButton = findViewById(R.id.removeImageButton);
+        removeImageButton.setOnClickListener(v -> {
+            imageUri = null;
+            imagePreview.setImageURI(null);
+            imagePreview.setVisibility(View.GONE);
+            Toast.makeText(this, "Image removed", Toast.LENGTH_SHORT).show();
+        });
 
         submitButton.setOnClickListener(v -> submitAssignment());
     }
 
     private void openFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        try {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        } catch (Exception e) {
+            Toast.makeText(this, "Error opening file chooser", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -62,19 +75,18 @@ public class SubmitAssignmentActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
-            imageUri = data.getData();
-            imagePreview.setImageURI(imageUri);
-            imagePreview.setVisibility(View.VISIBLE);
+            try {
+                imageUri = data.getData();
+                imagePreview.setImageURI(imageUri);
+                imagePreview.setVisibility(View.VISIBLE);
+            } catch (Exception e) {
+                Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     private void submitAssignment() {
         String description = descriptionEditText.getText().toString().trim();
-
-        if (imageUri == null) {
-            Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         if (description.isEmpty()) {
             descriptionEditText.setError("Please enter a description");
@@ -85,7 +97,6 @@ public class SubmitAssignmentActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         submitButton.setEnabled(false);
 
-        // ডেমো হিসেবে 2 সেকেন্ড ডিলে দেওয়া হলো (আসল অ্যাপে এখানে API কল করবেন)
         new Handler().postDelayed(() -> {
             progressBar.setVisibility(View.GONE);
             showSuccessDialog();
