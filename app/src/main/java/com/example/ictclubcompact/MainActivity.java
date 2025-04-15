@@ -1,23 +1,33 @@
 package com.example.ictclubcompact;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView notification, todo, news, assignment, resources, live, profile, helpem, shedule;
     private TextView regForm;
     private FirebaseAuth mAuth;
+    private static final String TAG = "MainActivity";
+    private static final String CHANNEL_ID = "ict_club_notifications";
+    private static final String PREF_NAME = "FCM_Prefs";
+    private static final String KEY_TOKEN = "fcm_token";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -25,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize Firebase Auth
+        // Firebase auth init
         mAuth = FirebaseAuth.getInstance();
 
-        // Check if user is logged in
+        // Check login
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             redirectToLogin();
@@ -38,9 +48,91 @@ public class MainActivity extends AppCompatActivity {
         initializeViews();
         setupRecyclerView();
         setupClickListeners();
+        setupFirebaseMessaging();
+        createNotificationChannel();
 
-        // Set navigation bar color
         getWindow().setNavigationBarColor(Color.parseColor("#0B2473"));
+
+        // Handle notification click
+        handleNotificationIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleNotificationIntent(intent);
+    }
+
+    private void handleNotificationIntent(Intent intent) {
+        if (intent != null && intent.getExtras() != null) {
+            String screen = intent.getStringExtra("screen");
+
+            if (screen != null) {
+                switch (screen) {
+                    case "todo":
+                        startActivity(new Intent(this, ToDo.class));
+                        break;
+                    case "news":
+                        startActivity(new Intent(this, News.class));
+                        break;
+                    case "assignment":
+                        startActivity(new Intent(this, Assignment.class));
+                        break;
+                    case "resources":
+                        startActivity(new Intent(this, Resources.class));
+                        break;
+                    case "profile":
+                        startActivity(new Intent(this, ProfileActivity.class));
+                        break;
+                    case "live":
+                        startActivity(new Intent(this, LiveClassesActivity.class));
+                        break;
+                    case "help":
+                        startActivity(new Intent(this, HelpActivity.class));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    private void setupFirebaseMessaging() {
+        FirebaseMessaging.getInstance().subscribeToTopic("general")
+                .addOnCompleteListener(task -> { });
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) return;
+
+                    String token = task.getResult();
+                    if (token != null && !token.isEmpty()) {
+                        saveTokenToPrefs(token);
+                        sendTokenToServer(token);
+                    }
+                });
+    }
+
+    private void saveTokenToPrefs(String token) {
+        SharedPreferences preferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        preferences.edit().putString(KEY_TOKEN, token).apply();
+    }
+
+    private void sendTokenToServer(String token) {
+        // Optional: send token to backend if needed
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "ICT Club Notifications",
+                    NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Channel for ICT Club notifications");
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
     private void redirectToLogin() {
@@ -50,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeViews() {
         regForm = findViewById(R.id.regForm);
+
         notification = findViewById(R.id.notification);
         todo = findViewById(R.id.todo);
         news = findViewById(R.id.news);
@@ -59,10 +152,11 @@ public class MainActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile);
         helpem = findViewById(R.id.helpem);
         shedule = findViewById(R.id.shedule);
+        notification = findViewById(R.id.notification);
 
-
-
-
+        notification.setOnClickListener(v -> {
+            // Optional: open notification center or message activity
+        });
     }
 
     private void setupRecyclerView() {
@@ -86,40 +180,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupClickListeners() {
-
-        // Registration Form
         regForm.setOnClickListener(v -> startActivity(new Intent(this, Registration.class)));
-
-
-
-        // ToDo
         todo.setOnClickListener(v -> startActivity(new Intent(this, ToDo.class)));
-
-        // News
         news.setOnClickListener(v -> startActivity(new Intent(this, News.class)));
-
-        // Assignment
         assignment.setOnClickListener(v -> startActivity(new Intent(this, Assignment.class)));
-
-        // Resources
         resources.setOnClickListener(v -> startActivity(new Intent(this, Resources.class)));
-
-        // Live Classes
         live.setOnClickListener(v -> startActivity(new Intent(this, LiveClassesActivity.class)));
-
-        // Profile
         profile.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
-
-        //help email
         helpem.setOnClickListener(v -> startActivity(new Intent(this, HelpActivity.class)));
 
+        notification.setOnClickListener(v -> startActivity(new Intent(this, NotificationActivity.class)));
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is signed in
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             redirectToLogin();

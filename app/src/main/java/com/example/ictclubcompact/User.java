@@ -5,19 +5,22 @@ public class User {
     private String email;
     private String phone;
     private String profileImageUrl;
-    private String userId;  // Added user ID field
+    private String userId;
+    private String dob;
+    private String bloodGroup;
+    private String semester;
+    private String department;
+    private String session;
 
-    // Required empty constructor for Firebase
     public User() {
-        // Default constructor required for Firebase DataSnapshot.getValue(User.class)
+        // Default constructor required for Firebase
     }
 
-    // Constructor with parameters for easy object creation
     public User(String userId, String name, String email, String phone, String profileImageUrl) {
         this.userId = userId;
         this.name = name;
         this.email = email;
-        this.phone = phone;
+        this.phone = formatPhoneNumber(phone);
         this.profileImageUrl = profileImageUrl;
     }
 
@@ -51,7 +54,6 @@ public class User {
     }
 
     public void setPhone(String phone) {
-        // Ensure phone number is stored with proper formatting
         this.phone = formatPhoneNumber(phone);
     }
 
@@ -61,6 +63,46 @@ public class User {
 
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
     }
 
     // Helper method to format phone numbers consistently
@@ -92,6 +134,11 @@ public class User {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", dob='" + dob + '\'' +
+                ", bloodGroup='" + bloodGroup + '\'' +
+                ", semester='" + semester + '\'' +
+                ", department='" + department + '\'' +
+                ", session='" + session + '\'' +
                 '}';
     }
 }

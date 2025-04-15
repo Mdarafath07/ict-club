@@ -1,14 +1,19 @@
 package com.example.ictclubcompact;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,19 +33,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class ProfileActivity extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
     private static final int PICK_IMAGE_REQUEST = 1;
 
     private FirebaseUser currentUser;
     private DatabaseReference databaseRef;
-    private ImageView profileImageView;
-    private TextView nameTextView, emailTextView, phoneTextView;
-    private Button changePasswordButton, backButton, logoutButton;
+    private ImageView profileImageView, backButton, editSaveButton;
+    private EditText nameEditText, emailEditText, phoneEditText, dobEditText, sessionEditText;
+    private Spinner bloodGroupSpinner, semesterSpinner, departmentSpinner;
+    private Button changePasswordButton, logoutButton, saveButton;
     private Uri imageUri;
     private ImgBBUploader imgBBUploader;
     private ValueEventListener userDataListener;
     private ProgressDialog progressDialog;
+    private boolean isEditMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +58,136 @@ public class ProfileActivity extends AppCompatActivity {
 
         initializeViews();
         initializeFirebase();
+        setupSpinners();
         imgBBUploader = new ImgBBUploader();
         loadUserData();
         setupClickListeners();
+        disableAllFields();
+    }
+
+    private void setupSpinners() {
+        ArrayAdapter<CharSequence> bloodGroupAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.blood_groups,
+                R.layout.spinner_item
+        );
+        bloodGroupAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        bloodGroupSpinner.setAdapter(bloodGroupAdapter);
+
+        ArrayAdapter<CharSequence> semesterAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.semesters,
+                R.layout.spinner_item
+        );
+        semesterAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        semesterSpinner.setAdapter(semesterAdapter);
+
+        ArrayAdapter<CharSequence> departmentAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.departments,
+                R.layout.spinner_item
+        );
+        departmentAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        departmentSpinner.setAdapter(departmentAdapter);
+
+        bloodGroupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (view != null) {
+                    ((TextView) view).setTextColor(Color.BLUE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    private void disableAllFields() {
+        nameEditText.setEnabled(false);
+        emailEditText.setEnabled(false);
+        phoneEditText.setEnabled(false);
+        dobEditText.setEnabled(false);
+        sessionEditText.setEnabled(false);
+
+        bloodGroupSpinner.setEnabled(false);
+        semesterSpinner.setEnabled(false);
+        departmentSpinner.setEnabled(false);
+
+        nameEditText.setFocusable(false);
+        emailEditText.setFocusable(false);
+        phoneEditText.setFocusable(false);
+        sessionEditText.setFocusable(false);
+        dobEditText.setFocusable(false);
+
+        nameEditText.setClickable(false);
+        emailEditText.setClickable(false);
+        phoneEditText.setClickable(false);
+        sessionEditText.setClickable(false);
+
+        nameEditText.setBackgroundResource(android.R.color.transparent);
+        emailEditText.setBackgroundResource(android.R.color.transparent);
+        phoneEditText.setBackgroundResource(android.R.color.transparent);
+        dobEditText.setBackgroundResource(android.R.color.transparent);
+        sessionEditText.setBackgroundResource(android.R.color.transparent);
+
+        bloodGroupSpinner.setBackgroundResource(android.R.color.transparent);
+        semesterSpinner.setBackgroundResource(android.R.color.transparent);
+        departmentSpinner.setBackgroundResource(android.R.color.transparent);
+    }
+
+    private void enableAllFields() {
+        nameEditText.setEnabled(true);
+        emailEditText.setEnabled(true);
+        phoneEditText.setEnabled(true);
+        dobEditText.setEnabled(true);
+        sessionEditText.setEnabled(true);
+
+        bloodGroupSpinner.setEnabled(true);
+        semesterSpinner.setEnabled(true);
+        departmentSpinner.setEnabled(true);
+
+        nameEditText.setFocusableInTouchMode(true);
+        emailEditText.setFocusableInTouchMode(true);
+        phoneEditText.setFocusableInTouchMode(true);
+        sessionEditText.setFocusableInTouchMode(true);
+        dobEditText.setFocusableInTouchMode(true);
+
+        nameEditText.setClickable(true);
+        emailEditText.setClickable(true);
+        phoneEditText.setClickable(true);
+        sessionEditText.setClickable(true);
+
+        nameEditText.setBackgroundResource(R.drawable.edit_text_bg);
+        emailEditText.setBackgroundResource(R.drawable.edit_text_bg);
+        phoneEditText.setBackgroundResource(R.drawable.edit_text_bg);
+        dobEditText.setBackgroundResource(R.drawable.edit_text_bg);
+        sessionEditText.setBackgroundResource(R.drawable.edit_text_bg);
+
+        bloodGroupSpinner.setBackgroundResource(R.drawable.spinner_background);
+        semesterSpinner.setBackgroundResource(R.drawable.spinner_background);
+        departmentSpinner.setBackgroundResource(R.drawable.spinner_background);
     }
 
     private void initializeViews() {
         profileImageView = findViewById(R.id.profileImageView);
-        nameTextView = findViewById(R.id.nameTextView);
-        emailTextView = findViewById(R.id.emailTextView);
-        phoneTextView = findViewById(R.id.phoneTextView);
-        changePasswordButton = findViewById(R.id.changePasswordButton);
         backButton = findViewById(R.id.backButton);
+        editSaveButton = findViewById(R.id.editSaveButton);
+
+        nameEditText = findViewById(R.id.nameEditText);
+        emailEditText = findViewById(R.id.emailEditText);
+        phoneEditText = findViewById(R.id.phoneEditText);
+        dobEditText = findViewById(R.id.dobEditText);
+        sessionEditText = findViewById(R.id.sessionEditText);
+
+        bloodGroupSpinner = findViewById(R.id.bloodGroupSpinner);
+        semesterSpinner = findViewById(R.id.semesterSpinner);
+        departmentSpinner = findViewById(R.id.departmentSpinner);
+
+        changePasswordButton = findViewById(R.id.changePasswordButton);
         logoutButton = findViewById(R.id.logoutButton);
+        saveButton = findViewById(R.id.saveButton);
     }
 
     private void initializeFirebase() {
@@ -112,10 +238,25 @@ public class ProfileActivity extends AppCompatActivity {
         runOnUiThread(() -> {
             if (isDestroyed()) return;
 
-            nameTextView.setText(user.getName() != null ? user.getName() : "N/A");
-            emailTextView.setText(user.getEmail() != null ? user.getEmail() : "N/A");
-            phoneTextView.setText(user.getPhone() != null ? user.getPhone() : "N/A");
+            nameEditText.setText(user.getName() != null ? user.getName() : "N/A");
+            emailEditText.setText(user.getEmail() != null ? user.getEmail() : "N/A");
+            phoneEditText.setText(user.getPhone() != null ? user.getPhone() : "N/A");
+
+            if (user.getDob() != null) dobEditText.setText(user.getDob());
+            if (user.getBloodGroup() != null) setSpinnerSelection(bloodGroupSpinner, user.getBloodGroup());
+            if (user.getSemester() != null) setSpinnerSelection(semesterSpinner, user.getSemester());
+            if (user.getDepartment() != null) setSpinnerSelection(departmentSpinner, user.getDepartment());
+            if (user.getSession() != null) sessionEditText.setText(user.getSession());
         });
+    }
+
+    private void setSpinnerSelection(Spinner spinner, String value) {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)) {
+                spinner.setSelection(i);
+                break;
+            }
+        }
     }
 
     private void loadProfileImage(String imageUrl) {
@@ -148,6 +289,81 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
         });
         logoutButton.setOnClickListener(v -> logoutUser());
+
+        editSaveButton.setOnClickListener(v -> toggleEditMode());
+        saveButton.setOnClickListener(v -> saveChanges());
+
+        dobEditText.setOnClickListener(v -> {
+            if (isEditMode) {
+                showDatePickerDialog();
+            }
+        });
+    }
+
+    private void toggleEditMode() {
+        isEditMode = !isEditMode;
+
+        if (isEditMode) {
+            editSaveButton.setImageResource(R.drawable.ic_close);
+            saveButton.setVisibility(View.VISIBLE);
+            enableAllFields();
+        } else {
+            editSaveButton.setImageResource(R.drawable.edit);
+            saveButton.setVisibility(View.GONE);
+            disableAllFields();
+        }
+    }
+
+    private void showDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year, month, dayOfMonth) -> {
+                    String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                    dobEditText.setText(selectedDate);
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
+    private void saveChanges() {
+        String name = nameEditText.getText().toString();
+        String email = emailEditText.getText().toString();
+        String phone = phoneEditText.getText().toString();
+        String dob = dobEditText.getText().toString();
+        String bloodGroup = bloodGroupSpinner.getSelectedItem().toString();
+        String semester = semesterSpinner.getSelectedItem().toString();
+        String department = departmentSpinner.getSelectedItem().toString();
+        String session = sessionEditText.getText().toString();
+
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+            showToast("Please fill all required fields");
+            return;
+        }
+
+        showProgressDialog("Saving changes...");
+
+        databaseRef.child("name").setValue(name);
+        databaseRef.child("email").setValue(email);
+        databaseRef.child("phone").setValue(phone);
+        databaseRef.child("dob").setValue(dob);
+        databaseRef.child("bloodGroup").setValue(bloodGroup);
+        databaseRef.child("semester").setValue(semester);
+        databaseRef.child("department").setValue(department);
+        databaseRef.child("session").setValue(session)
+                .addOnCompleteListener(task -> {
+                    dismissProgressDialog();
+
+                    if (task.isSuccessful()) {
+                        showToast("Profile updated successfully");
+                        toggleEditMode();
+                    } else {
+                        showToast("Failed to update profile");
+                    }
+                });
     }
 
     private void logoutUser() {
@@ -256,6 +472,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Glide.with(this)
                             .load(imageUri)
                             .circleCrop()
+                            .placeholder(R.drawable.profile)
                             .into(profileImageView);
                     uploadImageToImgBB();
                 } catch (IllegalArgumentException e) {
@@ -345,12 +562,9 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Remove Firebase listeners
         if (databaseRef != null && userDataListener != null) {
             databaseRef.removeEventListener(userDataListener);
         }
-
-        // Dismiss progress dialog
         dismissProgressDialog();
     }
 }
