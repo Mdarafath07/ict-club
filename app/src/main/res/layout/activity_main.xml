@@ -141,27 +141,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:paddingVertical="10dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="27dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="10dp"
-                    android:text="Members"
-                    android:textStyle="bold"
-                    android:textSize="11sp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:background="@drawable/button_background"/>
+                android:paddingVertical="10dp"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/regForm"
-                    android:layout_width="0dp"
+                    android:layout_width="80dp"
                     android:layout_height="27dp"
-                    android:layout_weight="1"
+
                     android:layout_marginEnd="10dp"
                     android:text="Registration"
                     android:textStyle="bold"
@@ -412,7 +399,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/shedule"
+                        android:id="@+id/schedule"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/shedule"/>
@@ -459,6 +446,7 @@
                     android:gravity="center"
                     android:background="@drawable/background"
                     android:elevation="3dp"
+
                     android:orientation="vertical">
 
                     <ImageView
@@ -478,6 +466,96 @@
             </GridLayout>
 
 
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text=" More"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/bluebg"
+                    android:elevation="3dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/team"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Our team"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/bluebg"
+                    android:elevation="3dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/aboutus"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="About us"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/adminpanal"
+
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/bluebg"
+                    android:elevation="3dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/admin"/>
+
+                    <TextView
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Admin"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+            </LinearLayout>
             <!-- Recent Activity -->
             <TextView
                 android:layout_width="match_parent"
@@ -504,6 +582,7 @@
 
 
             </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

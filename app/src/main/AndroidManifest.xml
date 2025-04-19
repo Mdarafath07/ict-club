@@ -16,7 +16,9 @@
         android:theme="@style/Theme.ICTClub"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Adminpanal"
+            android:exported="false" />
         <!-- Splash Screen (Launcher Activity) -->
         <activity
             android:name=".Splashscreen"
@@ -24,31 +26,26 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Main Authentication Flow -->
+        </activity> <!-- Main Authentication Flow -->
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.ICTClub"/>
+            android:theme="@style/Theme.ICTClub" />
         <activity
             android:name=".SignupActivity"
             android:exported="true"
-            android:theme="@style/Theme.ICTClub"/>
-
-        <!-- Main App Activities -->
+            android:theme="@style/Theme.ICTClub" /> <!-- Main App Activities -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.ICTClub"/>
+            android:theme="@style/Theme.ICTClub" />
         <activity
             android:name=".ProfileActivity"
-            android:exported="true"/>
-
-        <!-- Other Activities -->
+            android:exported="true" /> <!-- Other Activities -->
         <activity android:name=".LiveClassesActivity" />
         <activity android:name=".Resources" />
         <activity android:name=".AssignmentListActivity" />
@@ -58,8 +55,15 @@
         <activity android:name=".ToDo" />
         <activity android:name=".ImageViewActivity" />
         <activity android:name=".Registration" />
-        <activity android:name=".HelpActivity"/>
-        <activity android:name=".NotificationActivity"/>
+        <activity android:name=".HelpActivity" />
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".ScheduleActivity" />
+        <activity android:name=".ScheduleControlActivity" />
+        <activity android:name=".AddNotificationActivity" />
+        <activity android:name=".GalleryActivity" />
+
+
+
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -68,6 +72,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
+
 </manifest>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"
+    tools:context=".Adminpanal">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Admin Panel"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"/>
+    <TextView
+        android:id="@+id/scheduleap"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Class Schedule"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:background="@drawable/bluebox"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/notificationap"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Notifications"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bluebox"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/galleryap"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Gallery"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bluebox"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+
+
+</LinearLayout>

@@ -11,6 +11,7 @@ public class User {
     private String semester;
     private String department;
     private String session;
+    private boolean isAdmin; // Added admin field
 
     public User() {
         // Default constructor required for Firebase
@@ -22,9 +23,19 @@ public class User {
         this.email = email;
         this.phone = formatPhoneNumber(phone);
         this.profileImageUrl = profileImageUrl;
+
     }
 
-    // Getters and setters
+    // Add this getter and setter for admin status
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    // Keep all your existing getters and setters exactly as they are
     public String getUserId() {
         return userId;
     }
@@ -105,16 +116,14 @@ public class User {
         this.session = session;
     }
 
-    // Helper method to format phone numbers consistently
+    // Keep your existing helper method
     private String formatPhoneNumber(String phone) {
         if (phone == null || phone.isEmpty()) {
             return "";
         }
 
-        // Remove all non-digit characters
         String digits = phone.replaceAll("[^0-9]", "");
 
-        // Format as international number if not already
         if (digits.startsWith("880")) {
             return "+" + digits;
         } else if (digits.startsWith("01") && digits.length() == 11) {
@@ -123,22 +132,24 @@ public class User {
             return "+880" + digits;
         }
 
-        return phone; // Return original if format unrecognized
+        return phone;
     }
 
+    // Update toString() to include admin status
     @Override
     public String toString() {
         return "User{" +
-                "userId='" + userId + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", userId='" + userId + '\'' +
                 ", dob='" + dob + '\'' +
                 ", bloodGroup='" + bloodGroup + '\'' +
                 ", semester='" + semester + '\'' +
                 ", department='" + department + '\'' +
                 ", session='" + session + '\'' +
+                ", isAdmin=" + isAdmin +
                 '}';
     }
 }
